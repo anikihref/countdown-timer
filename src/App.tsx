@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import CountDownTimer from "./components/CountDownTimer";
+import DatePicker from "./components/DatePicker";
+import InterestingDates from "./components/InterestingDates";
 
 function App() {
+  const [time, setTime] = useState<number | null>(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="h-full">
+      <div className="h-[66.66%] from-sky-600 to-sky-800 bg-gradient-to-tr flex justify-center items-center px-5">
+        {time ? (
+          <CountDownTimer setTime={setTime} time={time} />
+        ) : (
+          <DatePicker setTime={setTime} />
+        )}
+      </div>
+
+      <InterestingDates setTime={setTime}></InterestingDates>
     </div>
   );
 }
